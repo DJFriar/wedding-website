@@ -2,7 +2,9 @@
   "name": "wedding-website",
   "main": ".open-next/worker.js",
   "compatibility_date": "2025-04-01",
-  "compatibility_flags": ["nodejs_compat"],
+  "compatibility_flags": [
+    "nodejs_compat"
+  ],
   "minify": true,
   "assets": {
     "directory": ".open-next/assets",
@@ -11,5 +13,11 @@
   "observability": {
     "enabled": true
   },
+  "routes": [
+    {
+      "pattern": "wedding.thecrafts.cc",
+      "custom_domain": true
+    }
+  ],
   "upload_source_maps": true
 }
