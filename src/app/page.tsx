@@ -257,12 +257,12 @@ export default function Example() {
         <div className="">
           <div className="mx-auto max-w-7xl px-6 lg:px-8">
             <div className="mx-auto max-w-2xl sm:text-center">
-              <h2 className="text-base/7 font-semibold text-indigo-400">We're getting hitched, yo!</h2>
+              <h2 className="text-base/7 font-semibold text-indigo-400">We&#39;re getting hitched, yo!</h2>
               <p className="mt-2 text-4xl font-semibold tracking-tight text-pretty text-white sm:text-5xl sm:text-balance">
                 WTF? No way!
               </p>
               <p className="mt-6 text-lg/8 text-gray-300">
-                Yep, the rumors are true. Tommy asked, Kasi said yes, and now it's time to party like it's 1999... err, 2026.
+                Yep, the rumors are true. Tommy asked, Kasi said yes, and now it&#39;s time to party like it&#39;s 1999... err, 2026.
               </p>
             </div>
           </div>
