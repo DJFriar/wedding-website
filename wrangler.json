@@ -5,6 +5,9 @@
   "compatibility_flags": [
     "nodejs_compat"
   ],
+  "vars": {
+    "RSVP_NOTIFICATION_EMAIL": "gettinghitched@thecrafts.cc"
+  },
   "minify": true,
   "assets": {
     "directory": ".open-next/assets",
