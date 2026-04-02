@@ -1,33 +1,106 @@
+@import url("https://fonts.googleapis.com/css2?family=Kapakana:wght@300;400&display=swap");
+
 @tailwind utilities;
 @import "tailwindcss";
 @import "tailwindcss/preflight";
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+@theme {
+  /* Silver, terracotta, teal + pink & marigold accents */
+  --color-wedding-cream: #f3f0ea;
+  --color-wedding-paper: #faf8f4;
+  --color-wedding-ink: #2a2624;
+  --color-wedding-muted: #5c5652;
+  --color-wedding-silver: #9c9791;
+  --color-wedding-silver-light: #d8d4cd;
+  --color-wedding-silver-mist: #ece8e2;
+  --color-wedding-teal: #008080;
+  --color-wedding-teal-dark: #004d4d;
+  --color-wedding-teal-soft: #d8f0f0;
+  --color-wedding-terracotta: #b4583a;
+  --color-wedding-terracotta-dark: #8f4228;
+  --color-wedding-terracotta-muted: #c97b63;
+  --color-wedding-pink: #f56fa1;
+  --color-wedding-pink-soft: #fce9f3;
+  --color-wedding-marigold: #d0942c;
+  --color-wedding-marigold-soft: #f2e3c4;
+  /* Hero band & accents (same family as teal; barn naming kept for utilities) */
+  --color-wedding-barn: #008080;
+  --color-wedding-barn-dark: #004d4d;
+  --color-wedding-barn-light: #1a9d9d;
+  --color-wedding-wood: #3f2e26;
+  --color-wedding-wood-mid: #5c4336;
+  --color-wedding-wood-wash: #c4a882;
+  --color-wedding-field: #e9e0d2;
+  --font-serif: var(--font-display), "Georgia", serif;
+  --font-sans: var(--font-body), ui-sans-serif, system-ui, sans-serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+@layer base {
+  body {
+    @apply bg-wedding-cream text-wedding-ink font-sans antialiased;
+    background-image: radial-gradient(
+        ellipse 120% 80% at 50% -20%,
+        rgb(216 240 240 / 0.65),
+        transparent 55%
+      ),
+      radial-gradient(
+        ellipse 80% 10% at 85% 60%,
+        rgb(252 233 243 / 0.45),
+        transparent 45%
+      ),
+      radial-gradient(
+        ellipse 60% 12% at 10% 75%,
+        rgb(242 227 196 / 0.4),
+        transparent 40%
+      );
   }
-}
-
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
 }
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+
+  .font-display {
+    font-family: var(--font-serif);
+  }
+
+  .font-kapakana {
+    font-family: "Kapakana", cursive, serif;
+  }
+
+  /* Country homestead / barn siding (very subtle on cream) */
+  .homestead-page {
+    background-color: var(--color-wedding-cream);
+    background-image: repeating-linear-gradient(
+      90deg,
+      rgb(0 128 128 / 0.04) 0px,
+      rgb(0 128 128 / 0.04) 1px,
+      transparent 1px,
+      transparent 48px
+    );
+  }
+
+  .homestead-hero-strip {
+    background: linear-gradient(
+        180deg,
+        rgb(0 128 128 / 0.14) 0%,
+        transparent 100%
+      ),
+      linear-gradient(
+        90deg,
+        var(--color-wedding-barn-dark) 0%,
+        var(--color-wedding-barn) 50%,
+        var(--color-wedding-barn-dark) 100%
+      );
+    box-shadow: inset 0 -1px 0 rgb(0 0 0 / 0.15);
+  }
+
+  .wood-frame {
+    box-shadow:
+      0 0 0 2px var(--color-wedding-wood-mid),
+      0 0 0 6px var(--color-wedding-wood-wash),
+      0 0 0 8px var(--color-wedding-wood),
+      0 28px 50px -12px rgb(63 46 38 / 0.35);
   }
 }
