@@ -169,12 +169,6 @@ export function InviteRsvpForm({ defaultLastName }: { defaultLastName: string })
         return
       }
 
-      if (res.status === 503 && data.error === 'not_configured') {
-        setErrorMessage('mailto_fallback')
-        setStatus('idle')
-        return
-      }
-
       if (res.status === 503 && data.error === 'formsubmit_needs_activation') {
         setStatus('error')
         setErrorMessage(

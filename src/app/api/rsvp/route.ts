@@ -1,6 +1,8 @@
 import { NextResponse } from 'next/server'
 import { getGuestById } from '@/lib/guests'
 
+const RSVP_INBOX = 'gettinghitched@thecrafts.cc'
+
 type RsvpPayload = {
   guestId: string
   name: string
@@ -96,23 +98,6 @@ export async function POST(request: Request) {
   const dietary = typeof body.dietary === 'string' ? body.dietary.trim() : ''
   const message = typeof body.message === 'string' ? body.message.trim() : ''
 
-  const destination = process.env.RSVP_NOTIFICATION_EMAIL
-  if (!destination) {
-    logRsvp({
-      phase: 'not_configured',
-      submission: {
-        guestId,
-        displayName: guest.displayName,
-        name,
-        attending,
-        guestCount: attending ? guestCount : 0,
-        dietary: dietary || null,
-        message: message || null,
-      },
-    })
-    return NextResponse.json({ ok: false, error: 'not_configured' }, { status: 503 })
-  }
-
   const submission = {
     guestId,
     displayName: guest.displayName,
@@ -145,7 +130,7 @@ export async function POST(request: Request) {
   if (referer) forwardHeaders.Referer = referer
 
   const res = await fetch(
-    `https://formsubmit.co/ajax/${encodeURIComponent(destination)}`,
+    `https://formsubmit.co/ajax/${encodeURIComponent(RSVP_INBOX)}`,
     {
       method: 'POST',
       headers: forwardHeaders,
