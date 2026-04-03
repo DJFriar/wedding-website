@@ -3,6 +3,12 @@
 import Link from 'next/link'
 import { FormEvent, useMemo, useState } from 'react'
 
+import {
+  type FormSubmitAjaxResponse,
+  getFormSubmitDeliveryError,
+} from '@/lib/rsvp-form-submit'
+import { getFormSubmitAjaxUrl } from '@/lib/rsvp-inbox'
+
 type GuestMatch = {
   id: string
   lastName: string
@@ -162,14 +168,46 @@ export function InviteRsvpForm({ defaultLastName }: { defaultLastName: string })
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload),
       })
-      const data = (await res.json()) as { ok?: boolean; error?: string }
+      const data = (await res.json()) as {
+        ok?: boolean
+        error?: string
+        formSubmit?: Record<string, string | boolean>
+      }
 
-      if (res.ok && data.ok) {
+      if (!res.ok || !data.ok || !data.formSubmit) {
+        setStatus('error')
+        setErrorMessage(
+          res.status === 400 && data.error === 'unknown_guest'
+            ? 'We could not match that invitation. Please go back and look up your invite again.'
+            : 'Something went wrong sending your RSVP. Please try again or use the email option below.',
+        )
+        return
+      }
+
+      const fsRes = await fetch(getFormSubmitAjaxUrl(), {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+        body: JSON.stringify(data.formSubmit),
+      })
+
+      let fsData: FormSubmitAjaxResponse = {}
+      let parseError = false
+      try {
+        fsData = (await fsRes.json()) as FormSubmitAjaxResponse
+      } catch {
+        parseError = true
+      }
+
+      const deliveryError = getFormSubmitDeliveryError(fsRes, fsData, parseError)
+      if (deliveryError === null) {
         setStatus('success')
         return
       }
 
-      if (res.status === 503 && data.error === 'formsubmit_needs_activation') {
+      if (deliveryError === 'formsubmit_needs_activation') {
         setStatus('error')
         setErrorMessage(
           'Email RSVP is almost ready: open the message FormSubmit sent to your notification address and click “Activate Form,” then try again.',
