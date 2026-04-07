@@ -429,7 +429,7 @@ export function InviteRsvpForm({ defaultLastName }: { defaultLastName: string })
             value={message}
             onChange={(e) => setMessage(e.target.value)}
             className="block w-full rounded-lg border border-wedding-silver-light bg-white px-3 py-2 text-wedding-ink shadow-sm placeholder:text-wedding-silver focus:border-wedding-teal focus:outline-none focus:ring-2 focus:ring-wedding-teal/30 sm:text-sm"
-            placeholder="Optional"
+            placeholder="Optional - share a wedding tip or trick, a note of encouragement, or a funny joke."
           />
         </div>
       </div>
