@@ -138,12 +138,20 @@ export default function HomePage() {
             Mark your calendar—we&apos;ll share more timing and weekend plans here as we finalize details. Right now
             we&apos;re focused on knowing who we&apos;ll get to hug in the barn aisle.
           </p>
-          <Link
-            href="/invite"
-            className="mt-8 inline-flex rounded-full border-2 border-white/30 bg-wedding-terracotta px-8 py-3.5 text-sm font-semibold text-white shadow-lg transition hover:border-white/45 hover:bg-wedding-terracotta-dark focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-wedding-paper"
-          >
-            RSVP — find your invitation
-          </Link>
+          <div className="mt-8 flex flex-col items-center gap-4 sm:flex-row sm:justify-center sm:gap-6">
+            <Link
+              href="/invite"
+              className="inline-flex rounded-full border-2 border-white/30 bg-wedding-terracotta px-8 py-3.5 text-sm font-semibold text-white shadow-lg transition hover:border-white/45 hover:bg-wedding-terracotta-dark focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-wedding-paper"
+            >
+              RSVP — find your invitation
+            </Link>
+            <Link
+              href="/registry"
+              className="inline-flex rounded-full border-2 border-wedding-silver-mist/50 bg-white/10 px-8 py-3.5 text-sm font-semibold text-wedding-paper shadow-sm transition hover:border-wedding-paper/40 hover:bg-white/15 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-wedding-paper"
+            >
+              Registry
+            </Link>
+          </div>
           <p className="mt-6 text-xs text-wedding-silver-mist/90 sm:text-sm">
             You&apos;ll look up your invite by last name—the same one on your envelope.
           </p>
@@ -156,6 +164,14 @@ export default function HomePage() {
             Kasi &amp; Tommy · {WEDDING_DATE_LINE}
             <br />
             {VENUE_NAME}, {VENUE_ADDRESS_LINE}
+            <br />
+            <Link href="/registry" className="font-semibold text-wedding-teal hover:text-wedding-teal-dark">
+              Registry
+            </Link>
+            <span className="text-wedding-silver-light"> · </span>
+            <Link href="/invite" className="font-semibold text-wedding-teal hover:text-wedding-teal-dark">
+              RSVP
+            </Link>
             <br />
             <span className="whitespace-nowrap">&copy; {new Date().getFullYear()} ambitiousNerds</span>
           </p>

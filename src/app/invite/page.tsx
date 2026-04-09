@@ -43,7 +43,10 @@ export default function InvitePage({
         </div>
 
         <p className="mt-8 text-center text-sm text-wedding-silver">
-          Questions?{' '}
+          <Link href="/registry" className="font-semibold text-wedding-teal transition hover:text-wedding-teal-dark">
+            Registry
+          </Link>
+          <span className="mx-2 text-wedding-silver-light">·</span>
           <Link
             href="/"
             className="font-semibold text-wedding-teal transition hover:text-wedding-teal-dark"
